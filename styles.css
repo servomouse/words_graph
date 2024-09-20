@@ -1,0 +1,204 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f0f0f0;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s, visibility 0.5s;
+	z-index: 999;
+}
+
+.overlay.visible {
+	visibility: visible;
+	opacity: 1;
+}
+
+.centered-div {
+	display: none;
+	position: relative;
+	width: 300px;
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	z-index: 1000;
+}
+
+.close-div-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	border: none;
+	border-radius: 50%;
+	background-color: #ff5c5c;
+	color: white;
+	font-size: 16px;
+	line-height: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.close-div-btn:hover {
+	background-color: #ff1c1c;
+}
+
+.input-pair {
+	margin-bottom: 10px;
+}
+
+.input-pair label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.input-pair input {
+	width: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.submit-btn {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.submit-btn:hover {
+	background-color: #0056b3;
+}
+
+#fullscreenCanvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+.overlay-text {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-size: 24px;
+	color: #333;
+	z-index: 1;
+}
+
+.start-quiz-button {
+	bottom: 10px;
+	right: 10px;
+}
+
+.add-word-button {
+	bottom: 70px;
+	right: 10px;
+}
+
+.overlay-button {
+	position: absolute;
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	z-index: 1;
+}
+
+.overlay-button:hover {
+	background-color: #0056b3;
+}
+
+.card {
+    perspective: 1000px;
+    width: 300px;
+    height: 200px;
+    position: relative; /* Change this to absolute or fixed if needed */
+    z-index: 1000; /* Ensure this is higher than other elements */
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+}
+
+.card-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.card-button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.close-card-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 30px;
+	height: 30px;
+	border: none;
+	border-radius: 50%;
+	background-color: #ff5c5c;
+	color: white;
+	font-size: 20px;
+	line-height: 11px; /* Match this to the height of the button */
+	/* text-align: center; */
+	cursor: pointer;
+	padding-left: 9px; /* Adjust this value to move the text horizontally */
+}
+
+.close-card-btn:hover {
+	background-color: #ff1c1c;
+}
+
