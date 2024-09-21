@@ -11,153 +11,51 @@
 </head>
 <body>
 	<canvas id="fullscreenCanvas"></canvas>
+
 	<div class="overlay" id="overlay"></div>
-	<div class="overlay-text">This is a text overlay</div>
+
+	<!-- <div class="overlay-text">This is a text overlay</div> -->
+	
+	<div class="checkbox-container">Languages:
+		<label class="checkbox-unit">RU
+		<input type="checkbox" checked="checked">
+		<span class="checkmark"></span>
+		</label>
+		<label class="checkbox-unit">EN
+		<input type="checkbox">
+		<span class="checkmark"></span>
+		</label>
+		<label class="checkbox-unit">SP
+		<input type="checkbox">
+		<span class="checkmark"></span>
+		</label>
+	</div>
+
 	<div class="centered-div" id="centeredDiv">
-		<button class="close-div-btn" onclick="closeDiv()">×</button>
+		<a class="close-thik" onclick="closeDiv()"></a>
+		<!-- <button class="close-div-btn" onclick="closeDiv()">×</button> -->
 		<div id="inputContainer"></div>
 		<button class="submit-btn" onclick="submitForm()">Submit</button>
 	</div>
 
 	<div class="card" id="quiz-card">
-	    <button class="close-card-btn" onclick="closeCard()">×</button>
-	    <h2>Word</h2>
-	    <p>Definition or example sentence</p>
+		<a class="close-thik" onclick="closeCard()"></a>
+	    <!-- <button class="close-card-btn" onclick="closeCard()">×</button> -->
+	    <h2 id="quiz-word">Word</h2>
+	    <p id="quiz-example">Definition or example sentence</p>
 	    <div class="buttons">
-	    <button class="card-button" onclick="correctAnswer()">Button 1</button>
-	    <button class="card-button" onclick="incorrectAnswer()">Button 2</button>
-	    <button class="card-button" onclick="incorrectAnswer()">Button 3</button>
-	    <button class="card-button" onclick="incorrectAnswer()">Button 4</button>
+			<button class="card-button" id="quiz-answer1" onclick="correctAnswer()">Button 1</button>
+			<button class="card-button" id="quiz-answer2" onclick="incorrectAnswer()">Button 2</button>
+			<button class="card-button" id="quiz-answer3" onclick="incorrectAnswer()">Button 3</button>
+			<button class="card-button" id="quiz-answer4" onclick="incorrectAnswer()">Button 4</button>
 	    </div>
 	</div>
-	<button class="overlay-button start-quiz-button" onclick="openCard()">Start quiz</button>
-	<button class="overlay-button add-word-button" onclick="showDiv()">Add word</button>
 
-<script>
-function buttonClicked() {
-	alert('Button clicked!');
-}
-
-// Resize the canvas to fill the browser window dynamically
-window.addEventListener('resize', resizeCanvas, false);
-
-function resizeCanvas() {
-	const canvas = document.getElementById('fullscreenCanvas');
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-}
-
-resizeCanvas();
-
-
-function closeDiv() {
-	document.getElementById('centeredDiv').style.display = 'none';
-	document.getElementById('overlay').classList.remove('visible');
-}
-
-function showDiv() {
-	document.getElementById('centeredDiv').style.display = 'block'; // or 'flex' if you prefer
-	document.getElementById('overlay').classList.add('visible');
-}
-
-function submitForm() {
-	closeDiv();
-	// alert('Form submitted!');
-}
-
-function addInputPair(labelText) {
-	const container = document.getElementById('inputContainer');
-	const div = document.createElement('div');
-	div.className = 'input-pair';
-
-	const label = document.createElement('label');
-	label.textContent = labelText;
-
-	const input = document.createElement('input');
-	input.type = 'text';
-
-	div.appendChild(label);
-	div.appendChild(input);
-	container.appendChild(div);
-}
-
-addInputPair('Text line 1:');
-addInputPair('Text line 2:');
-
-function correctAnswer() {
-    const card = document.getElementById('quiz-card');
-    card.classList.add("hidden");
-    Swal.fire({
-        title: 'Correct!',
-        text: 'Good job!',
-        icon: 'success',
-        confirmButtonText: 'Next'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            setTimeout(() => {
-                // Callback function after 500ms delay
-                card.classList.remove("hidden");
-                console.log('User pressed the confirm button after 500ms');
-                // You can add any action you want here, like resetting the question
-            }, 500);
-        }
-    });
-	fireConfetti();
-    // confetti({
-    //     particleCount: 200,
-    //     spread: 500,
-    //     origin: { y: 0.6 }
-    // });
-}
-
-function fireConfetti() {
-	const myConfetti = confetti.create(null, { resize: true, useWorker: true });
-	myConfetti({
-		particleCount: 100,
-		spread: 70,
-		origin: { y: 0.6 }
-	});
-
-	const confettiCanvas = document.querySelector('canvas:not(#fullscreenCanvas)');
-	if (confettiCanvas) {
-		confettiCanvas.style.zIndex = '1000'; // Set your desired z-index value
-	}
-}
-
-function incorrectAnswer() {
-    const card = document.getElementById('quiz-card');
-    card.classList.add("hidden");
-    Swal.fire({
-        title: 'Incorrect!',
-        text: 'Try again!',
-        icon: 'error',
-        confirmButtonText: 'Retry'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            setTimeout(() => {
-                // Callback function after 500ms delay
-                card.classList.remove("hidden");
-                console.log('User pressed the confirm button after 500ms');
-                // You can add any action you want here, like resetting the question
-            }, 500);
-        }
-    });
-}
-
-function openCard() {
-    // const card = document.getElementById('quiz-card');
-    // const overlay = document.getElementById('overlay');
-    // card.classList.remove("hidden");
-    // overlay.classList.add("visible");
-    document.getElementById('quiz-card').classList.remove("hidden");
-	document.getElementById('overlay').classList.add('visible');
-}
-
-function closeCard() {
-    document.getElementById('quiz-card').classList.add("hidden");
-	document.getElementById('overlay').classList.remove('visible');
-}
-  closeCard();
-</script>
+	<div class="overlay-buttons">
+		<button class="overlay-button open-file-button" onclick="openFile()">Open file</button>
+		<button class="overlay-button start-quiz-button" onclick="openCard()">Start quiz</button>
+		<button class="overlay-button add-word-button" onclick="showDiv()">Add word</button>
+	</div>
+<script src="script.js"></script>
 </body>
 </html>
