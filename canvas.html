@@ -15,8 +15,8 @@
 
 	<!-- <div class="overlay-text">This is a text overlay</div> -->
 	
-	<div class="checkbox-container">Languages:
-		<label class="checkbox-unit">RU
+	<div class="checkbox-container" id="checkbox-container">Languages:
+		<!-- <label class="checkbox-unit">RU
 		<input type="checkbox" checked="checked">
 		<span class="checkmark"></span>
 		</label>
@@ -27,7 +27,7 @@
 		<label class="checkbox-unit">SP
 		<input type="checkbox">
 		<span class="checkmark"></span>
-		</label>
+		</label> -->
 	</div>
 
 	<div class="centered-div" id="centeredDiv">
@@ -51,6 +51,7 @@
 	</div>
 
 	<div class="overlay-buttons">
+		<button class="overlay-button save-file-button" onclick="saveFile()">Save file</button>
 		<button class="overlay-button open-file-button" onclick="openFile()">Open file</button>
 		<button class="overlay-button start-quiz-button" onclick="openCard()">Start quiz</button>
 		<button class="overlay-button add-word-button" onclick="showDiv()">Add word</button>
