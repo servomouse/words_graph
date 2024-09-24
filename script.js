@@ -2,6 +2,7 @@
 let jsonFileContent = null;
 let langs = [];
 let currentLang = null;
+let currentPair = {"orig_lang": "", "word": "", "sec_lang": "", "trans": ""};
 
 // Add the sample method to arrays to select a random element
 Array.prototype.sample = function() {
@@ -141,8 +142,9 @@ function correctAnswer() {
         confirmButtonText: 'Next'
     }).then((result) => {
         if (result.isConfirmed) {
+            fillQuizCard();
+            jsonFileContent[currentPair.orig_lang][currentPair.word].translations[currentPair.sec_lang][currentPair.trans] += 1;
             setTimeout(() => {
-                fillQuizCard();
                 // Callback function after 500ms delay
                 card.classList.remove("hidden");
                 console.log('User pressed the confirm button after 500ms');
@@ -182,9 +184,12 @@ function incorrectAnswer() {
         confirmButtonText: 'Retry'
     }).then((result) => {
         if (result.isConfirmed) {
+            if (jsonFileContent[currentPair.orig_lang][currentPair.word].translations[currentPair.sec_lang][currentPair.trans] > 0) {
+                jsonFileContent[currentPair.orig_lang][currentPair.word].translations[currentPair.sec_lang][currentPair.trans] += 1;
+            }
+            fillQuizCard();
             setTimeout(() => {
                 // Callback function after 500ms delay
-                fillQuizCard();
                 card.classList.remove("hidden");
                 console.log('User pressed the confirm button after 500ms');
                 // You can add any action you want here, like resetting the question
@@ -265,6 +270,11 @@ function getWord() {
             answers.push(spl);
         }
     }
+    // jsonFileContent[currentPair.orig_lang][currentPair.word].translations[currentPair.sec_lang][currentPair.trans]
+    currentPair.orig_lang = currentLang;
+    currentPair.word = word;
+    currentPair.sec_lang = secLang;
+    currentPair.trans = correctAnswer;
     return [word, jsonFileContent[currentLang][word].example, answers];
 }
 
